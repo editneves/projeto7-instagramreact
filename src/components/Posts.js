@@ -1,3 +1,6 @@
+import React, { useState } from "react";
+
+
 export default function Posts() {
     return (
         <>
@@ -105,6 +108,13 @@ export function Post() {
 
 function PostItem(props) {
     //console.log(props)
+    const [style, setStyle] = useState("");
+
+    const changeStyle = () => {
+        console.log("you just clicked");
+        setStyle("ion-icon");
+    };
+
     return (
         <>
             <div className="post" data-test="post">
@@ -119,18 +129,18 @@ function PostItem(props) {
                 </div>
 
                 <div className="conteudo" data-test="post-image">
-                    <img src={props.imagemFeed}  />
+                    <img src={props.imagemFeed} />
                 </div>
 
                 <div className="fundo">
                     <div className="acoes">
-                        <div>
-                            <ion-icon data-test="like-post" name="heart-outline"></ion-icon>
+                        <div className="ion-icon" >
+                            <ion-icon className={style} onClick={changeStyle} data-test="like-post" name="heart-outline"></ion-icon>
                             <ion-icon name="chatbubble-outline"></ion-icon>
-                            <ion-icon name="paper-plane-outline"></ion-icon>
+                            <ion-icon  name="paper-plane-outline"></ion-icon>
                         </div>
-                        <div>
-                            <ion-icon data-test="save-post" name="bookmark-outline"></ion-icon>
+                        <div >
+                            <ion-icon  className={style} onClick={changeStyle} data-test="save-post" name="bookmark-outline"></ion-icon>
                         </div>
                     </div>
 
@@ -145,8 +155,6 @@ function PostItem(props) {
         </>
     )
 }
-
-
 
 
 
