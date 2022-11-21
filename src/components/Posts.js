@@ -1,6 +1,5 @@
-import React, { useState } from "react";
 
-
+import React, { useState } from "react"
 export default function Posts() {
     return (
         <>
@@ -84,6 +83,7 @@ export default function Posts() {
 }
 
 export function Post() {
+    //const quant = "101.523"
     const post = [
         {
             imagem: "img/meowed.svg", texto: "meowed", imagemFeed: "img/gato-telefone.svg",
@@ -91,7 +91,7 @@ export function Post() {
         },
         {
             imagem: "img/barked.svg", texto: "9gag", imagemFeed: "img/dog.svg",
-            imagemUser: "img/adorable_animals.svg", user: "adorable_animals", quant: "99.159"
+            imagemUser: "img/adorable_animals.svg", User: "adorable_animals", quant:"101.523"
         }
     ]
 
@@ -108,12 +108,46 @@ export function Post() {
 
 function PostItem(props) {
     //console.log(props)
-    const [style, setStyle] = useState("");
 
-    const changeStyle = () => {
-        console.log("you just clicked");
-        setStyle("ion-icon");
-    };
+    const [heartColor, setHeartColor] = useState("");
+    const [saveColor, setSaveColor] = useState("");
+    const [contador, setContador] = React.useState(0);
+    const [nome, setNome] = useState("heart-outline");
+    const [saveNome, setSaveNome] = useState("bookmark-outline");
+
+    function Curtir() {
+
+        setContador(contador + 1);
+        const cont = contador + 1;
+        const curt = contador % 2;
+        console.log(setContador)
+        if (curt === 0) {
+            setNome("heart")
+            setHeartColor("red")
+
+        }
+        else {
+            setNome("heart-outline")
+            setHeartColor("black")
+        }
+        //return cont
+    }
+
+    function Save() {
+
+        setContador(contador + 1);
+        const save = contador % 2;
+
+        if (save === 0) {
+            setSaveNome("bookmark")
+            setSaveColor("black")
+
+        }
+        else {
+            setSaveNome("bookmark-outline")
+        }
+    }
+
 
     return (
         <>
@@ -132,18 +166,20 @@ function PostItem(props) {
                     <img src={props.imagemFeed} />
                 </div>
 
+
                 <div className="fundo">
                     <div className="acoes">
-                        <div className="ion-icon" >
-                            <ion-icon className={style} onClick={changeStyle} data-test="like-post" name="heart-outline"></ion-icon>
+                        <div>
+                            <ion-icon style={{ color: heartColor }} onClick={() => { Curtir() }}
+                                data-test="like-post" name={nome}></ion-icon>
+
                             <ion-icon name="chatbubble-outline"></ion-icon>
-                            <ion-icon  name="paper-plane-outline"></ion-icon>
+                            <ion-icon name="paper-plane-outline"></ion-icon>
                         </div>
                         <div >
-                            <ion-icon  className={style} onClick={changeStyle} data-test="save-post" name="bookmark-outline"></ion-icon>
+                            <ion-icon style={{ color: saveColor }} onClick={() => { Save() }} data-test="save-post" name={saveNome}></ion-icon>
                         </div>
                     </div>
-
                     <div className="curtidas">
                         <img src={props.imagemUser} />
                         <div className="texto">
@@ -154,11 +190,5 @@ function PostItem(props) {
             </div>
         </>
     )
+
 }
-
-
-
-
-
-//Arrays / Objetos nos componentes e renderizados no JSX usando map.
-//- Posts(onde cada item será um componente diferente, o Post) - Os posts(deve ter pelo menos 2 posts)

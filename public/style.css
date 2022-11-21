@@ -211,15 +211,15 @@ body {
   font-weight: 300;
 }
 
-.ion-icon {
-  --ion-color-favorite: #69bb7b;
-  --ion-color-favorite-rgb: 105, 187, 123;
-  --ion-color-favorite-contrast: #ffffff;
-  --ion-color-favorite-contrast-rgb: 255, 255, 255;
-  --ion-color-favorite-shade: #5ca56c;
-  --ion-color-favorite-tint: #78c288;
+
+
+ion-icon .plus {
+  color: white;
 }
 
+ion-icon .minus {
+  color: #dc3545;
+}
 
 .post .fundo .curtidas img {
   width: 20px;
