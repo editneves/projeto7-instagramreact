@@ -11,7 +11,7 @@ export default function Sugestoes() {
                     <div>Ver tudo</div>
                 </div>
                 <Sugestao />
-                 {/*    
+                {/*    
                 <div class="sugestao">
                     <div class="usuario">
                         <img src="img/bad.vibes.memes.svg" />
@@ -96,7 +96,7 @@ function SugestaoItem(props) {
         <>
             <div class="sugestao">
                 <div class="usuario">
-                <img src={props.imagem} />
+                    <img src={props.imagem} />
                     <div class="texto">
                         <div class="nome">{props.texto}</div>
                         <div class="razao">{props.razao}</div>

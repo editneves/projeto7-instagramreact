@@ -2,8 +2,8 @@ export default function Stories() {
     return (
         <>
             <div className="stories">
-            <Story />
-                 {/*
+                <Story />
+                {/*
                 <div class="story">
                     <div class="imagem">
                         <img src="img/9gag.svg" />
@@ -107,13 +107,13 @@ function StoryItem(props) {
     //console.log(props)
     return (
         <>
-        <div className="story">
-            <div className="imagem">
-                <img src={props.imagem} />
-            </div>
-            <div className="usuario">
-                {props.texto}
-            </div>
+            <div className="story">
+                <div className="imagem">
+                    <img src={props.imagem} />
+                </div>
+                <div className="usuario">
+                    {props.texto}
+                </div>
             </div>
         </>
     )

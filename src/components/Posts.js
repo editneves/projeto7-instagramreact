@@ -5,7 +5,7 @@ export default function Posts() {
         <>
             <div className="posts">
                 <Post />
-                {/* 
+                {/*
                 <div class="post">
                     <div class="topo">
                         <div class="usuario">
@@ -83,7 +83,6 @@ export default function Posts() {
 }
 
 export function Post() {
-    //const quant = "101.523"
     const post = [
         {
             imagem: "img/meowed.svg", texto: "meowed", imagemFeed: "img/gato-telefone.svg",
@@ -91,7 +90,7 @@ export function Post() {
         },
         {
             imagem: "img/barked.svg", texto: "9gag", imagemFeed: "img/dog.svg",
-            imagemUser: "img/adorable_animals.svg", User: "adorable_animals", quant:"101.523"
+            imagemUser: "img/adorable_animals.svg", User: "adorable_animals", quant: "101.523"
         }
     ]
 
@@ -100,7 +99,7 @@ export function Post() {
         <>
             {post.map((item) => <PostItem key={item.texto} imagem={item.imagem} texto={item.texto}
                 imagemFeed={item.imagemFeed} imagemUser={item.imagemUser}
-                user={item.user} quant={item.quant} />)}
+                user={item.User} quant={item.quant} />)}
         </>
     )
 }
@@ -114,23 +113,28 @@ function PostItem(props) {
     const [contador, setContador] = React.useState(0);
     const [nome, setNome] = useState("heart-outline");
     const [saveNome, setSaveNome] = useState("bookmark-outline");
+    const [curtidas, setCurtidas] = React.useState(0);
+    const [curtidasFeed, setCurtidasFeed] = React.useState(0);
 
     function Curtir() {
-
         setContador(contador + 1);
-        const cont = contador + 1;
         const curt = contador % 2;
-        console.log(setContador)
+
         if (curt === 0) {
             setNome("heart")
             setHeartColor("red")
-
+            setContador(contador + 1);
         }
         else {
             setNome("heart-outline")
             setHeartColor("black")
+            setContador(contador - 1);
         }
-        //return cont
+
+        if (curt === 0) {
+            setCurtidas(curtidas + 1)
+            setCurtidasFeed(curtidasFeed + 1)
+        }
     }
 
     function Save() {
@@ -141,13 +145,11 @@ function PostItem(props) {
         if (save === 0) {
             setSaveNome("bookmark")
             setSaveColor("black")
-
         }
         else {
             setSaveNome("bookmark-outline")
         }
     }
-
 
     return (
         <>
@@ -163,7 +165,7 @@ function PostItem(props) {
                 </div>
 
                 <div className="conteudo" data-test="post-image">
-                    <img src={props.imagemFeed} />
+                    <img onClick={() => { Curtir() }} src={props.imagemFeed} />
                 </div>
 
 
@@ -183,7 +185,7 @@ function PostItem(props) {
                     <div className="curtidas">
                         <img src={props.imagemUser} />
                         <div className="texto">
-                            Curtido por <strong>{props.user}</strong> e <strong data-test="likes-number">outras {props.quant} pessoas</strong>
+                            Curtido por <strong>{props.user}</strong> e <strong data-test="likes-number">outras {curtidas} pessoas</strong>
                         </div>
                     </div>
                 </div>
